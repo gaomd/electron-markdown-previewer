@@ -20,20 +20,22 @@
 
     var supportExternalLinks = function (e) {
         var href;
-        var isExternal = false;
 
         var checkDomElement = function (element) {
             if (element.nodeName === 'A') {
                 href = element.getAttribute('href');
             }
-            if (element.classList.contains('js-external-link')) {
-                isExternal = true;
-            }
-            if (href && isExternal) {
+
+            // TODO: open local file
+            if (href && href.match(/^https?:\/\//)) {
                 shell.openExternal(href);
                 e.preventDefault();
             } else if (element.parentElement) {
                 checkDomElement(element.parentElement);
+            } else {
+                // open nothing instead of blank
+                // TODO: what causes blank page?
+                e.preventDefault();
             }
         }
 
