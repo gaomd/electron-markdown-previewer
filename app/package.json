@@ -1,18 +1,20 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "description": "Starter for your Electron application. Out of the box ready for serious stuff.",
+  "name": "electron-markdown-previewer",
+  "productName": "Electron Markdown Previewer",
+  "description": "Markdown Previewer.",
   "version": "0.1.0",
-  "author": "Mr Gumby",
-  "copyright": "© 2016, your company here",
+  "author": "Mengdi Gao",
+  "copyright": "© 2016, Mengdi Gao",
   "main": "background.js",
   "dependencies": {
-    "fs-jetpack": "^0.7.0"
+    "commonmark": "^0.25.1",
+    "fs-jetpack": "^0.7.0",
+    "github-markdown-css": "^2.2.1"
   },
   "packageNameTemplate": "{{name}}-v{{version}}-{{platform}}-{{arch}}",
   "osx": {
     "build": "1",
-    "identifier": "com.example.electron-boilerplate",
+    "identifier": "md.gao.markdown-previewer",
     "LSApplicationCategoryType": "public.app-category.productivity",
     "//codeSignIdentitiy": {
       "dmg": "Developer ID Application: Company Name (APPIDENTITY)",
