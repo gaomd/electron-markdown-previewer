@@ -36,5 +36,25 @@
 	<string>{{copyright}}</string>
 	<key>LSApplicationCategoryType</key>
 	<string>{{LSApplicationCategoryType}}</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>markdown</string>
+				<string>mdown</string>
+				<string>markdn</string>
+				<string>md</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>icon.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Markdown document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+	</array>
 </dict>
 </plist>

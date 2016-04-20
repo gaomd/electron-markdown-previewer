@@ -2,11 +2,11 @@
 // All stuff below is just to show you how it works. You can delete all of it.
 
 // Use new ES6 modules syntax for everything.
-import {remote} from "electron";
+import {remote, ipcRenderer} from "electron";
 import jetpack from "fs-jetpack";
 import env from "./env";
-import fs from "fs";
-import commonmark from "commonmark"; // native node.js module
+import {watch} from "./previewer/watcher";
+import {render} from "./previewer/renderer";
 
 console.log('Loaded environment variables:', env);
 
@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    var watchingFilePath = null;
-
     document.body.addEventListener('drop', function (e) {
         e.preventDefault();
 
@@ -51,30 +49,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log('File dragged:', file.path);
 
-        if (watchingFilePath !== null && watchingFilePath !== file.path) {
-            fs.unwatchFile(watchingFilePath);
-        }
-
-        fs.watchFile(file.path, function (curr, prev) {
-            if (curr.mtime !== prev.mtime) {
-                renderMarkdownFile(file.path, true);
-            }
+        watch(file.path, function (path, isReload) {
+            document.getElementById('rendered').innerHTML = render(path);
         });
-
-        renderMarkdownFile(file.path);
     });
 });
 
-function renderMarkdownFile(path, isReload = true) {
-    var reader = new commonmark.Parser();
-    var writer = new commonmark.HtmlRenderer();
-    var parsed = reader.parse(fs.readFileSync(path, {encoding: 'UTF-8'})); // parsed is a 'Node' tree
-    var result = writer.render(parsed); // result is a String
-    var webContainer = document.getElementById('rendered');
+ipcRenderer.on('open-file', function (e, file) {
+    console.log('File opened:', file.path);
 
-    if (isReload) {
-        var previousResult = webContainer.innerHTML;
-    }
-
-    webContainer.innerHTML = result;
-}
+    watch(file.path, function (path, isReload) {
+        if (document.body.classList.contains('incoming-file')) {
+            document.body.classList.remove('incoming-file');
+        }
+        document.getElementById('rendered').innerHTML = render(path);
+    });
+});
