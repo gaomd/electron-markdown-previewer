@@ -10,10 +10,8 @@
 
     <script src="helpers/context_menu.js"></script>
     <script src="helpers/external_links.js"></script>
-
-    <script src="app.js"></script>
 </head>
-<body class="incoming-file">
+<body class="incoming-file" id="app">
 
 <div class="container markdown-body" id="rendered"></div>
 
@@ -27,7 +25,10 @@
     <button class="btn btn-sm pull-right" id="settings">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </button>
-    <button class="btn btn-sm pull-right" id="always-on-top">
+    <button class="btn btn-sm pull-right"
+            id="always-on-top"
+            v-bind:class="{ 'active': alwaysOnTop }"
+            v-on:click="toggleAlwaysOnTop">
         <i class="fa fa-thumb-tack" aria-hidden="true"></i>
     </button>
     <button class="btn btn-sm pull-left" id="back">
@@ -38,5 +39,8 @@
     </button>
     <p class="file-path">/Users/username/path/to/README.md</p>
 </div>
+
+<script src="app.js"></script>
+
 </body>
 </html>

@@ -7,6 +7,7 @@ import jetpack from "fs-jetpack";
 import env from "./env";
 import {watch} from "./previewer/watcher";
 import {render} from "./previewer/renderer";
+import Vue from "vue";
 
 console.log('Loaded environment variables:', env);
 
@@ -64,4 +65,22 @@ ipcRenderer.on('open-file', function (e, file) {
         }
         document.getElementById('rendered').innerHTML = render(path);
     });
+});
+
+new Vue({
+    el: '#app',
+    data: {
+        alwaysOnTop: remote.BrowserWindow.getFocusedWindow().isAlwaysOnTop()
+    },
+    methods: {
+        toggleAlwaysOnTop: function () {
+            if (this.alwaysOnTop) {
+                remote.BrowserWindow.getFocusedWindow().setAlwaysOnTop(false);
+            } else {
+                remote.BrowserWindow.getFocusedWindow().setAlwaysOnTop(true);
+            }
+
+            this.alwaysOnTop = remote.BrowserWindow.getFocusedWindow().isAlwaysOnTop();
+        }
+    }
 });
