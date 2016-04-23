@@ -5,6 +5,7 @@
     <title>Electron Markdown Previewer</title>
 
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
+    <link href="node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="node_modules/github-markdown-css/github-markdown.css" rel="stylesheet" type="text/css">
 
     <script src="helpers/context_menu.js"></script>
@@ -22,5 +23,20 @@
 </div>
 <div class="dropzone dropzone-mask"></div>
 
+<div id="status-bar" class="status-bar">
+    <button class="btn btn-sm pull-right" id="settings">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-sm pull-right" id="always-on-top">
+        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-sm pull-left" id="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-sm pull-left" id="force-reload">
+        <i class="fa fa-repeat" aria-hidden="true"></i>
+    </button>
+    <p class="file-path">/Users/username/path/to/README.md</p>
+</div>
 </body>
 </html>

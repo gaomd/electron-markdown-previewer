@@ -66,3 +66,47 @@ body {
     opacity: 0;
   }
 }
+
+@status-bar-height: 23px;
+@status-bar-frame-color: #C8C6C8;
+
+.status-bar {
+  width: 100%;
+  height: @status-bar-height + 1px;
+  border-top: 1px solid @status-bar-frame-color;
+  background-image: linear-gradient(-180deg, #EDEBED 0%, #D6D4D6 100%);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  .btn {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    //line-height: @status-bar-height; causes icon position push down
+    height: @status-bar-height;
+    width: @status-bar-height + 1px;
+    border: 0;
+    background: inherit;
+    border-right: 1px solid @status-bar-frame-color;
+  }
+  .btn.pull-right {
+    border-right-width: 0;
+    border-left: 1px solid @status-bar-frame-color;
+  }
+  .file-path {
+    float: left;
+    margin: 0;
+    line-height: @status-bar-height;
+    font-size: 11px;
+    color: #333;
+    margin-left: 5px;
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}

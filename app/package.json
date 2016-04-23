@@ -8,6 +8,7 @@
   "main": "background.js",
   "dependencies": {
     "commonmark": "^0.25.1",
+    "font-awesome": "^4.6.1",
     "fs-jetpack": "^0.7.0",
     "github-markdown-css": "^2.2.1"
   },
